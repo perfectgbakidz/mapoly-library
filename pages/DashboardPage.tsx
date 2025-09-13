@@ -1,5 +1,6 @@
 
 
+
 import React, { useState, useEffect } from 'react';
 import * as api from '../services/api';
 import { DashboardStats } from '../types';
@@ -43,9 +44,9 @@ const DashboardPage: React.FC = () => {
     const availablePercentage = totalBooks > 0 ? (availableBooks / totalBooks) * 100 : 0;
     
     return (
-        <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold text-slate-800 mb-4">Library Book Status</h3>
-            <div className="w-full bg-slate-200 rounded-full h-8 flex overflow-hidden">
+        <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md">
+            <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-4">Library Book Status</h3>
+            <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-8 flex overflow-hidden">
                 <div 
                     className="bg-amber-500 h-full flex items-center justify-center text-white text-sm font-bold" 
                     style={{ width: `${borrowedPercentage}%` }}
@@ -61,7 +62,7 @@ const DashboardPage: React.FC = () => {
                      {availablePercentage > 10 && `${Math.round(availablePercentage)}%`}
                 </div>
             </div>
-            <div className="flex justify-between mt-2 text-sm text-slate-600">
+            <div className="flex justify-between mt-2 text-sm text-slate-600 dark:text-slate-400">
                 <span><span className="font-bold text-amber-500">{borrowedBooks}</span> On Loan</span>
                 <span><span className="font-bold text-green-500">{availableBooks}</span> Available</span>
             </div>

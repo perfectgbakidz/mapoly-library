@@ -1,5 +1,6 @@
 
 
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { Book } from '../types';
 import * as api from '../services/api';
@@ -101,7 +102,7 @@ const BooksPage: React.FC = () => {
              placeholder="Search by title, author, ISBN..."
              value={searchTerm}
              onChange={(e) => setSearchTerm(e.target.value)}
-             className="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500"
+             className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-md shadow-sm bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-green-500 focus:border-green-500"
             />
         </div>
         {isAdmin && <Button onClick={() => handleOpenModal()} className="w-full md:w-auto">Add New Book</Button>}

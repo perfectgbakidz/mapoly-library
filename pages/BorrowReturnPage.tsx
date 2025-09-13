@@ -1,5 +1,7 @@
 
 
+
+
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import QRCode from 'qrcode';
 import { Book, Loan, LoanWithDetails, User } from '../types';
@@ -134,11 +136,11 @@ const StudentBorrowReturnPage = () => {
     
     const statusPill = (status: Loan['status']) => {
         const styles = {
-            pending: 'bg-yellow-100 text-yellow-800',
-            approved: 'bg-green-100 text-green-800',
-            rejected: 'bg-red-100 text-red-800',
-            returned: 'bg-blue-100 text-blue-800',
-            'on-hold': 'bg-indigo-100 text-indigo-800',
+            pending: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/60 dark:text-yellow-300',
+            approved: 'bg-green-100 text-green-800 dark:bg-green-900/60 dark:text-green-300',
+            rejected: 'bg-red-100 text-red-800 dark:bg-red-900/60 dark:text-red-300',
+            returned: 'bg-blue-100 text-blue-800 dark:bg-blue-900/60 dark:text-blue-300',
+            'on-hold': 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300',
         };
         return <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${styles[status]}`}>{status}</span>;
     }
@@ -146,11 +148,11 @@ const StudentBorrowReturnPage = () => {
     return (
         <div className="space-y-8">
              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="bg-white p-6 rounded-lg shadow-md space-y-4">
-                    <h2 className="text-xl font-semibold text-slate-800 border-b pb-2">Request a Book Loan</h2>
+                <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md space-y-4">
+                    <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 border-b pb-2 border-slate-200 dark:border-slate-700">Request a Book Loan</h2>
                     <div>
-                        <label htmlFor="book-select-borrow" className="block text-sm font-medium text-slate-700">Select Book</label>
-                        <select id="book-select-borrow" value={selectedBookIdToRequest} onChange={e => setSelectedBookIdToRequest(e.target.value)} className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm rounded-md">
+                        <label htmlFor="book-select-borrow" className="block text-sm font-medium text-slate-700 dark:text-slate-300">Select Book</label>
+                        <select id="book-select-borrow" value={selectedBookIdToRequest} onChange={e => setSelectedBookIdToRequest(e.target.value)} className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm rounded-md">
                             <option value="">-- Choose a book --</option>
                             {availableBooksToRequest.map(book => <option key={book.id} value={book.id}>{book.title} ({book.author})</option>)}
                         </select>
@@ -160,11 +162,11 @@ const StudentBorrowReturnPage = () => {
                     </div>
                 </div>
 
-                <div className="bg-white p-6 rounded-lg shadow-md space-y-4">
-                    <h2 className="text-xl font-semibold text-slate-800 border-b pb-2">Return a Book</h2>
+                <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md space-y-4">
+                    <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 border-b pb-2 border-slate-200 dark:border-slate-700">Return a Book</h2>
                      <div>
-                        <label htmlFor="loan-select" className="block text-sm font-medium text-slate-700">Select a Book to Return</label>
-                        <select id="loan-select" value={selectedBookIdToReturn} onChange={e => setSelectedBookIdToReturn(e.target.value)} className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm rounded-md">
+                        <label htmlFor="loan-select" className="block text-sm font-medium text-slate-700 dark:text-slate-300">Select a Book to Return</label>
+                        <select id="loan-select" value={selectedBookIdToReturn} onChange={e => setSelectedBookIdToReturn(e.target.value)} className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm rounded-md">
                             <option value="">-- Choose one of your borrowed books --</option>
                             {booksToReturn.map(loan => <option key={loan.id} value={loan.bookId}>{loan.bookTitle}</option>)}
                         </select>
@@ -175,26 +177,26 @@ const StudentBorrowReturnPage = () => {
                 </div>
             </div>
 
-            <div className="bg-white p-4 md:p-6 rounded-lg shadow-md">
-                <h2 className="text-xl font-semibold text-slate-800 border-b pb-3 mb-4">My Loan History & Status</h2>
+            <div className="bg-white dark:bg-slate-800 p-4 md:p-6 rounded-lg shadow-md">
+                <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-700 pb-3 mb-4">My Loan History & Status</h2>
                 <div className="overflow-x-auto">
-                    <table className="min-w-full divide-y divide-slate-200">
-                        <thead className="bg-slate-50 hidden md:table-header-group">
+                    <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
+                        <thead className="bg-slate-50 dark:bg-slate-700 hidden md:table-header-group">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Book Title</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Request Date</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Status</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Due Date</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Actions</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Book Title</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Request Date</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Due Date</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
-                         <tbody className="bg-white divide-y divide-slate-200 md:divide-y-0">
+                         <tbody className="bg-white dark:bg-slate-800 divide-y divide-slate-200 dark:divide-slate-700 md:divide-y-0">
                             {myLoans.map(loan => (
-                                <tr key={loan.id} className="block md:table-row border-b md:border-none p-4 md:p-0">
-                                    <td className="px-6 py-2 md:py-4 whitespace-nowrap text-sm font-medium text-slate-900 block md:table-cell"><span className="font-bold md:hidden">Book: </span>{loan.bookTitle}</td>
-                                    <td className="px-6 py-2 md:py-4 whitespace-nowrap text-sm text-slate-500 block md:table-cell"><span className="font-bold md:hidden">Requested: </span>{formatDate(loan.requestDate)}</td>
-                                    <td className="px-6 py-2 md:py-4 whitespace-nowrap text-sm text-slate-500 block md:table-cell"><span className="font-bold md:hidden">Status: </span>{statusPill(loan.status)}</td>
-                                    <td className="px-6 py-2 md:py-4 whitespace-nowrap text-sm text-slate-500 block md:table-cell"><span className="font-bold md:hidden">Due: </span>{formatDate(loan.dueDate)}</td>
+                                <tr key={loan.id} className="block md:table-row border-b md:border-none border-slate-200 dark:border-slate-700 p-4 md:p-0">
+                                    <td className="px-6 py-2 md:py-4 whitespace-nowrap text-sm font-medium text-slate-900 dark:text-slate-200 block md:table-cell"><span className="font-bold md:hidden">Book: </span>{loan.bookTitle}</td>
+                                    <td className="px-6 py-2 md:py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400 block md:table-cell"><span className="font-bold md:hidden">Requested: </span>{formatDate(loan.requestDate)}</td>
+                                    <td className="px-6 py-2 md:py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400 block md:table-cell"><span className="font-bold md:hidden">Status: </span>{statusPill(loan.status)}</td>
+                                    <td className="px-6 py-2 md:py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400 block md:table-cell"><span className="font-bold md:hidden">Due: </span>{formatDate(loan.dueDate)}</td>
                                     <td className="px-6 py-2 md:py-4 whitespace-nowrap text-sm font-medium block md:table-cell">
                                         {loan.status === 'approved' && !loan.returnDate && (
                                              <Button variant="secondary" onClick={() => handleDownloadQRCode(loan)} className="text-xs px-2 py-1">Download QR Code</Button>
@@ -213,6 +215,7 @@ const StudentBorrowReturnPage = () => {
 
 // --- ADMIN VIEW ---
 const AdminLoanManagementPage = () => {
+    // FIX: `addToast` is provided by `useToast`, not `useAuth`.
     const { addToast } = useToast();
     const { fetchPendingLoanCount } = useAuth();
     const [allLoans, setAllLoans] = useState<LoanWithDetails[]>([]);
@@ -272,31 +275,31 @@ const AdminLoanManagementPage = () => {
     const today = new Date();
     today.setHours(0,0,0,0);
 
-    const tabButtonClasses = (tabName: string) => `px-3 py-2 text-sm font-medium rounded-md transition-colors ${activeTab === tabName ? 'bg-green-700 text-white' : 'text-slate-600 hover:bg-slate-200'}`;
+    const tabButtonClasses = (tabName: string) => `px-3 py-2 text-sm font-medium rounded-md transition-colors ${activeTab === tabName ? 'bg-green-700 text-white' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'}`;
 
     if(isLoading) return <Spinner/>
 
     const renderTable = (loans: LoanWithDetails[]) => (
-         <div className="overflow-x-auto bg-white shadow-md rounded-lg">
-            <table className="min-w-full divide-y divide-slate-200">
-                <thead className="bg-slate-50 hidden md:table-header-group">
+         <div className="overflow-x-auto bg-white dark:bg-slate-800 shadow-md rounded-lg">
+            <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
+                <thead className="bg-slate-50 dark:bg-slate-700 hidden md:table-header-group">
                     <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Student</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Book Title</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Request Date</th>
-                        {activeTab !== 'pending' && <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Due/Action Date</th>}
-                         {activeTab === 'pending' && <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase tracking-wider">Actions</th>}
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Student</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Book Title</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Request Date</th>
+                        {activeTab !== 'pending' && <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Due/Action Date</th>}
+                         {activeTab === 'pending' && <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Actions</th>}
                     </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-slate-200 md:divide-y-0">
+                <tbody className="bg-white dark:bg-slate-800 divide-y divide-slate-200 dark:divide-slate-700 md:divide-y-0">
                     {loans.map(loan => {
                         const isOverdue = loan.dueDate && new Date(loan.dueDate) < today;
                         return (
-                            <tr key={loan.id} className={`block md:table-row border-b md:border-none p-4 md:p-0 ${isOverdue ? 'bg-red-50' : ''}`}>
-                                <td className="px-6 py-2 md:py-4 whitespace-nowrap text-sm font-medium text-slate-900 block md:table-cell"><span className="font-bold md:hidden">Student: </span>{loan.userName} ({loan.userMatric})</td>
-                                <td className="px-6 py-2 md:py-4 whitespace-nowrap text-sm text-slate-500 block md:table-cell"><span className="font-bold md:hidden">Book: </span>{loan.bookTitle}</td>
-                                <td className="px-6 py-2 md:py-4 whitespace-nowrap text-sm text-slate-500 block md:table-cell"><span className="font-bold md:hidden">Requested: </span>{formatDate(loan.requestDate)}</td>
-                                {activeTab !== 'pending' && <td className={`px-6 py-2 md:py-4 whitespace-nowrap text-sm block md:table-cell ${isOverdue ? 'font-bold text-red-600' : 'text-slate-500'}`}>{isOverdue ? `OVERDUE: ${formatDate(loan.dueDate)}` : (loan.status === 'returned' ? `Returned: ${formatDate(loan.returnDate)}` : `Due: ${formatDate(loan.dueDate)}`)}</td>}
+                            <tr key={loan.id} className={`block md:table-row border-b md:border-none border-slate-200 dark:border-slate-700 p-4 md:p-0 ${isOverdue ? 'bg-red-50 dark:bg-red-900/20' : ''}`}>
+                                <td className="px-6 py-2 md:py-4 whitespace-nowrap text-sm font-medium text-slate-900 dark:text-slate-200 block md:table-cell"><span className="font-bold md:hidden">Student: </span>{loan.userName} ({loan.userMatric})</td>
+                                <td className="px-6 py-2 md:py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400 block md:table-cell"><span className="font-bold md:hidden">Book: </span>{loan.bookTitle}</td>
+                                <td className="px-6 py-2 md:py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400 block md:table-cell"><span className="font-bold md:hidden">Requested: </span>{formatDate(loan.requestDate)}</td>
+                                {activeTab !== 'pending' && <td className={`px-6 py-2 md:py-4 whitespace-nowrap text-sm block md:table-cell ${isOverdue ? 'font-bold text-red-600 dark:text-red-400' : 'text-slate-500 dark:text-slate-400'}`}>{isOverdue ? `OVERDUE: ${formatDate(loan.dueDate)}` : (loan.status === 'returned' ? `Returned: ${formatDate(loan.returnDate)}` : `Due: ${formatDate(loan.dueDate)}`)}</td>}
                                 {activeTab === 'pending' && (
                                     <td className="px-6 py-2 md:py-4 whitespace-nowrap text-right text-sm font-medium space-x-2 block md:table-cell">
                                         <Button variant="primary" onClick={() => handleApprove(loan.id)} className="text-xs px-2 py-1">Approve</Button>
@@ -322,8 +325,8 @@ const AdminLoanManagementPage = () => {
 
     return (
         <div className="space-y-6">
-            <div className="bg-white p-4 rounded-lg shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <h2 className="text-xl font-bold text-slate-800">Loan Management</h2>
+            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <h2 className="text-xl font-bold text-slate-800 dark:text-slate-200">Loan Management</h2>
                  <div className="flex flex-wrap space-x-2">
                     <button onClick={() => setActiveTab('pending')} className={tabButtonClasses('pending')}>Pending ({pendingLoans.length})</button>
                     <button onClick={() => setActiveTab('active')} className={tabButtonClasses('active')}>Active ({activeLoans.length})</button>

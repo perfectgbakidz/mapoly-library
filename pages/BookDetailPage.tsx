@@ -1,5 +1,6 @@
 
 
+
 import React, { useState, useEffect, useCallback } from 'react';
 // FIX: Changed react-router-dom import to namespace import to fix module resolution errors.
 import * as ReactRouterDOM from 'react-router-dom';
@@ -69,7 +70,7 @@ const BookDetailPage: React.FC = () => {
     const isAvailable = book.availableQuantity > 0;
 
     return (
-        <div className="bg-white p-6 md:p-8 rounded-lg shadow-md max-w-4xl mx-auto">
+        <div className="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-lg shadow-md max-w-4xl mx-auto">
             <div className="grid md:grid-cols-3 gap-8">
                 <div className="md:col-span-1">
                     <img 
@@ -79,27 +80,27 @@ const BookDetailPage: React.FC = () => {
                     />
                 </div>
                 <div className="md:col-span-2 space-y-4">
-                    <h1 className="text-3xl font-bold text-slate-800">{book.title}</h1>
-                    <p className="text-lg text-slate-600">by {book.author}</p>
+                    <h1 className="text-3xl font-bold text-slate-800 dark:text-slate-200">{book.title}</h1>
+                    <p className="text-lg text-slate-600 dark:text-slate-400">by {book.author}</p>
                     
                     <div className="flex items-center space-x-4 pt-2">
-                        <span className={`px-3 py-1 text-sm font-semibold rounded-full ${isAvailable ? 'bg-green-100 text-green-800' : 'bg-amber-100 text-amber-800'}`}>
+                        <span className={`px-3 py-1 text-sm font-semibold rounded-full ${isAvailable ? 'bg-green-100 text-green-800 dark:bg-green-900/60 dark:text-green-300' : 'bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300'}`}>
                            {isAvailable ? `${book.availableQuantity} Available` : 'Unavailable'}
                         </span>
-                        {book.category && <span className="bg-slate-100 text-slate-800 px-3 py-1 text-sm font-semibold rounded-full">{book.category}</span>}
+                        {book.category && <span className="bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-300 px-3 py-1 text-sm font-semibold rounded-full">{book.category}</span>}
                     </div>
 
-                    <p className="text-slate-700 leading-relaxed pt-4 border-t mt-4">
+                    <p className="text-slate-700 dark:text-slate-300 leading-relaxed pt-4 border-t dark:border-slate-700 mt-4">
                         {book.description || 'No description available.'}
                     </p>
 
-                    <div className="text-sm text-slate-500 pt-2">
+                    <div className="text-sm text-slate-500 dark:text-slate-400 pt-2">
                         <p><strong>ISBN:</strong> {book.isbn}</p>
                         <p><strong>Total Copies:</strong> {book.quantity}</p>
                     </div>
 
                     {user?.role === 'student' && (
-                        <div className="pt-4 border-t mt-4">
+                        <div className="pt-4 border-t dark:border-slate-700 mt-4">
                             {isAvailable ? (
                                 <Button onClick={handleRequestLoan} isLoading={isSubmitting}>Request Loan</Button>
                             ) : (
@@ -109,8 +110,8 @@ const BookDetailPage: React.FC = () => {
                     )}
                 </div>
             </div>
-             <div className="mt-8 pt-4 border-t">
-                <ReactRouterDOM.Link to="/books" className="text-green-600 hover:text-green-500 font-medium">
+             <div className="mt-8 pt-4 border-t dark:border-slate-700">
+                <ReactRouterDOM.Link to="/books" className="text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300 font-medium">
                     &larr; Back to All Books
                 </ReactRouterDOM.Link>
             </div>

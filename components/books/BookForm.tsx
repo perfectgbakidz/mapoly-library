@@ -1,5 +1,6 @@
 
 
+
 import React, { useState, useEffect } from 'react';
 import { Book } from '../../types';
 import Input from '../common/Input';
@@ -83,7 +84,7 @@ const BookForm: React.FC<BookFormProps> = ({ book, onSave, onCancel, isLoading }
       <Input label="Category" id="category" name="category" value={formData.category} onChange={handleChange} placeholder="e.g., Programming, Science" />
       
       <div>
-        <label htmlFor="coverImageFile" className="block text-sm font-medium text-slate-700">Cover Image</label>
+        <label htmlFor="coverImageFile" className="block text-sm font-medium text-slate-700 dark:text-slate-300">Cover Image</label>
         <div className="mt-2 flex items-center space-x-4">
             <div className="shrink-0">
                 <img 
@@ -100,20 +101,20 @@ const BookForm: React.FC<BookFormProps> = ({ book, onSave, onCancel, isLoading }
                     name="coverImageFile"
                     onChange={handleFileChange}
                     accept="image/png, image/jpeg, image/webp"
-                    className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
+                    className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100 dark:file:bg-green-900/40 dark:file:text-green-300 dark:hover:file:bg-green-900/60"
                 />
             </label>
         </div>
       </div>
       
       <div>
-        <label htmlFor="description" className="block text-sm font-medium text-slate-700">Description</label>
+        <label htmlFor="description" className="block text-sm font-medium text-slate-700 dark:text-slate-300">Description</label>
         <div className="mt-1">
           <textarea
             id="description"
             name="description"
             rows={3}
-            className="block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+            className="block w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-md shadow-sm bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
             value={formData.description}
             onChange={handleChange}
             placeholder="A brief summary of the book..."

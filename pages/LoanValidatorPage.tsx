@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect } from 'react';
 import { Html5QrcodeScanner, Html5QrcodeScannerState } from 'html5-qrcode';
 import { useToast } from '../hooks/useToast';
@@ -106,16 +107,16 @@ const LoanValidatorPage: React.FC = () => {
     const ResultCard = () => {
         const isSuccess = validationStatus === 'valid';
         const borderColor = isSuccess ? 'border-green-500' : 'border-red-500';
-        const textColor = isSuccess ? 'text-green-700' : 'text-red-700';
+        const textColor = isSuccess ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400';
 
         return (
-            <div className={`bg-white p-6 rounded-lg shadow-md border-l-4 ${borderColor}`}>
+            <div className={`bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md border-l-4 ${borderColor}`}>
                 <h3 className={`text-xl font-bold ${textColor} mb-4`}>
                     {isSuccess ? 'Validation Successful' : 'Validation Failed'}
                 </h3>
-                <p className="text-slate-600 mb-4">{validationMessage}</p>
+                <p className="text-slate-600 dark:text-slate-300 mb-4">{validationMessage}</p>
                 {scanResult && (
-                    <div className="space-y-2 border-t pt-4 mt-4 text-slate-700">
+                    <div className="space-y-2 border-t dark:border-slate-700 pt-4 mt-4 text-slate-700 dark:text-slate-300">
                         <p><strong>Student:</strong> {scanResult.studentName}</p>
                         <p><strong>Matric No:</strong> {scanResult.matricNo}</p>
                         <p><strong>Book:</strong> {scanResult.bookTitle}</p>
@@ -131,16 +132,16 @@ const LoanValidatorPage: React.FC = () => {
 
     return (
         <div className="max-w-2xl mx-auto space-y-6">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-                <h1 className="text-2xl font-bold text-slate-800 mb-2">Loan Validator</h1>
-                <p className="text-slate-500">Use the camera to scan a student's loan QR code to validate their book pickup.</p>
+            <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md">
+                <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-2">Loan Validator</h1>
+                <p className="text-slate-500 dark:text-slate-400">Use the camera to scan a student's loan QR code to validate their book pickup.</p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-md min-h-[350px] flex flex-col justify-center items-center">
+            <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md min-h-[350px] flex flex-col justify-center items-center">
                  {!isScanning && validationStatus === 'idle' && (
                     <div className="text-center">
                         <QRCodeIcon />
-                        <p className="text-slate-600 my-4">Ready to validate a loan.</p>
+                        <p className="text-slate-600 dark:text-slate-400 my-4">Ready to validate a loan.</p>
                         <Button onClick={handleStartScan}>Start Scanner</Button>
                     </div>
                  )}
@@ -155,7 +156,7 @@ const LoanValidatorPage: React.FC = () => {
 };
 
 const QRCodeIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto text-slate-300 dark:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v1m6 11h2m-6.5 6.5v.01M4 12V4h8v8H4zm0 8v-4h4v4H4zm8 0v-4h4v4h-4zm4-12v-4h4v4h-4zm0 8h-4v-4h4v4z" />
     </svg>
 );

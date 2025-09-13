@@ -1,6 +1,7 @@
 
 
 
+
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import * as api from '../services/api';
@@ -107,29 +108,29 @@ const ProfileSettingsPage: React.FC = () => {
     return (
         <div className="space-y-8 max-w-4xl mx-auto">
             {/* Profile Picture Section */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
-                <h2 className="text-xl font-semibold text-slate-800 border-b pb-3 mb-4">Profile Picture</h2>
+            <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md">
+                <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 border-b dark:border-slate-700 pb-3 mb-4">Profile Picture</h2>
                 <form onSubmit={handlePictureSubmit} className="flex items-center space-x-6">
                     <div className="shrink-0">
                          {picturePreview ? (
                             <img src={picturePreview} alt="Profile preview" className="w-20 h-20 rounded-full object-cover" />
                         ) : (
-                            <div className="w-20 h-20 bg-slate-200 rounded-full flex items-center justify-center text-slate-400">
+                            <div className="w-20 h-20 bg-slate-200 dark:bg-slate-700 rounded-full flex items-center justify-center text-slate-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
                             </div>
                         )}
                     </div>
                     <label className="block">
                         <span className="sr-only">Choose profile photo</span>
-                        <input type="file" onChange={handlePictureChange} accept="image/*" className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100"/>
+                        <input type="file" onChange={handlePictureChange} accept="image/*" className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100 dark:file:bg-green-900/40 dark:file:text-green-300 dark:hover:file:bg-green-900/60"/>
                     </label>
                     <Button type="submit" isLoading={isPictureSubmitting} disabled={!profilePictureFile}>Upload</Button>
                 </form>
             </div>
 
             {/* Profile Info Section */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
-                <h2 className="text-xl font-semibold text-slate-800 border-b pb-3 mb-4">Personal Information</h2>
+            <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md">
+                <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 border-b dark:border-slate-700 pb-3 mb-4">Personal Information</h2>
                 <form onSubmit={handleProfileSubmit} className="space-y-4">
                     <Input label="Name" id="name" name="name" value={profileData.name} onChange={handleProfileChange} required />
                     <Input 
@@ -155,8 +156,8 @@ const ProfileSettingsPage: React.FC = () => {
             </div>
 
             {/* Change Password Section */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
-                <h2 className="text-xl font-semibold text-slate-800 border-b pb-3 mb-4">Change Password</h2>
+            <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md">
+                <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 border-b dark:border-slate-700 pb-3 mb-4">Change Password</h2>
                 <form onSubmit={handlePasswordSubmit} className="space-y-4">
                     <Input label="Current Password" id="current_password" name="current_password" type="password" value={passwordData.current_password} onChange={handlePasswordChange} required />
                     <Input label="New Password" id="new_password" name="new_password" type="password" value={passwordData.new_password} onChange={handlePasswordChange} required />

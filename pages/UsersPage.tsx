@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { User } from '../types';
 import * as api from '../services/api';
@@ -61,7 +62,7 @@ const UsersPage: React.FC = () => {
              placeholder="Search by name, matric no, department..."
              value={searchTerm}
              onChange={(e) => setSearchTerm(e.target.value)}
-             className="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500"
+             className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-md shadow-sm bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-green-500 focus:border-green-500"
             />
         </div>
         {/* "Add User" and "Edit User" functionality is removed to align with new API */}

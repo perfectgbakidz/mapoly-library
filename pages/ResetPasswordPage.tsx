@@ -1,6 +1,8 @@
 
 
 
+
+
 import React, { useState } from 'react';
 // FIX: Changed react-router-dom import to namespace import to fix module resolution errors.
 import * as ReactRouterDOM from 'react-router-dom';
@@ -12,8 +14,8 @@ import { useToast } from '../hooks/useToast';
 
 const Logo = () => (
     <div className="flex flex-col items-center justify-center text-slate-800 mb-4">
-        <img src="public/logo.jpeg" alt="Moshood Abiola Polytechnic Logo" className="w-24" />
-        <h1 className="text-xl font-bold text-green-800 mt-2">Moshood Abiola Polytechnic Library</h1>
+        <img src="https://i.imgur.com/x3A0haK.jpeg" alt="Moshood Abiola Polytechnic Logo" className="w-24" />
+        <h1 className="text-xl font-bold text-green-800 dark:text-green-400 mt-2">Moshood Abiola Polytechnic Library</h1>
     </div>
 );
 
@@ -54,14 +56,14 @@ const ResetPasswordPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex bg-slate-100">
+    <div className="min-h-screen flex bg-slate-100 dark:bg-slate-900">
       <AuthSlider />
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
-        <div className="max-w-md w-full bg-white shadow-xl rounded-lg p-8 space-y-6">
+        <div className="max-w-md w-full bg-white dark:bg-slate-800 shadow-xl rounded-lg p-8 space-y-6">
           <Logo />
           <div className="text-center">
-            <h2 className="text-2xl font-bold text-slate-800">Reset Your Password</h2>
-            <p className="text-slate-500">Enter a new, secure password for your account.</p>
+            <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-200">Reset Your Password</h2>
+            <p className="text-slate-500 dark:text-slate-400">Enter a new, secure password for your account.</p>
           </div>
 
           <form className="space-y-4" onSubmit={handleSubmit}>
@@ -90,8 +92,8 @@ const ResetPasswordPage: React.FC = () => {
             </div>
           </form>
           <div className="text-center text-sm">
-            <p className="text-slate-600">
-                <ReactRouterDOM.Link to="/login" className="font-medium text-green-600 hover:text-green-500">
+            <p className="text-slate-600 dark:text-slate-400">
+                <ReactRouterDOM.Link to="/login" className="font-medium text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300">
                     Back to Sign in
                 </ReactRouterDOM.Link>
             </p>

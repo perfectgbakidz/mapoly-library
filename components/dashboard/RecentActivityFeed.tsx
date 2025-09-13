@@ -1,5 +1,6 @@
 
 
+
 import React, { useState, useEffect, useCallback } from 'react';
 // FIX: Changed react-router-dom import to namespace import to fix module resolution errors.
 import * as ReactRouterDOM from 'react-router-dom';
@@ -57,7 +58,7 @@ const RecentActivityFeed: React.FC = () => {
                     timestamp: new Date(loan.requestDate),
                     text: (
                         <>
-                            New loan request from <ReactRouterDOM.Link to={`/users/${loan.userId}`} className="font-semibold text-green-700 hover:underline">{userMap.get(loan.userId) || 'Unknown User'}</ReactRouterDOM.Link> for <ReactRouterDOM.Link to={`/books/${loan.bookId}`} className="font-semibold text-green-700 hover:underline">{bookMap.get(loan.bookId) || 'Unknown Book'}</ReactRouterDOM.Link>.
+                            New loan request from <ReactRouterDOM.Link to={`/users/${loan.userId}`} className="font-semibold text-green-700 dark:text-green-400 hover:underline">{userMap.get(loan.userId) || 'Unknown User'}</ReactRouterDOM.Link> for <ReactRouterDOM.Link to={`/books/${loan.bookId}`} className="font-semibold text-green-700 dark:text-green-400 hover:underline">{bookMap.get(loan.bookId) || 'Unknown Book'}</ReactRouterDOM.Link>.
                         </>
                     )
                 });
@@ -70,7 +71,7 @@ const RecentActivityFeed: React.FC = () => {
                     timestamp: new Date(loan.approvalDate),
                     text: (
                          <>
-                            Loan for <ReactRouterDOM.Link to={`/books/${loan.bookId}`} className="font-semibold text-green-700 hover:underline">{bookMap.get(loan.bookId) || 'Unknown Book'}</ReactRouterDOM.Link> approved for <ReactRouterDOM.Link to={`/users/${loan.userId}`} className="font-semibold text-green-700 hover:underline">{userMap.get(loan.userId) || 'Unknown User'}</ReactRouterDOM.Link>.
+                            Loan for <ReactRouterDOM.Link to={`/books/${loan.bookId}`} className="font-semibold text-green-700 dark:text-green-400 hover:underline">{bookMap.get(loan.bookId) || 'Unknown Book'}</ReactRouterDOM.Link> approved for <ReactRouterDOM.Link to={`/users/${loan.userId}`} className="font-semibold text-green-700 dark:text-green-400 hover:underline">{userMap.get(loan.userId) || 'Unknown User'}</ReactRouterDOM.Link>.
                         </>
                     )
                 });
@@ -83,7 +84,7 @@ const RecentActivityFeed: React.FC = () => {
                     timestamp: new Date(loan.returnDate),
                     text: (
                          <>
-                           <ReactRouterDOM.Link to={`/books/${loan.bookId}`} className="font-semibold text-green-700 hover:underline">{bookMap.get(loan.bookId) || 'Unknown Book'}</ReactRouterDOM.Link> was returned by <ReactRouterDOM.Link to={`/users/${loan.userId}`} className="font-semibold text-green-700 hover:underline">{userMap.get(loan.userId) || 'Unknown User'}</ReactRouterDOM.Link>.
+                           <ReactRouterDOM.Link to={`/books/${loan.bookId}`} className="font-semibold text-green-700 dark:text-green-400 hover:underline">{bookMap.get(loan.bookId) || 'Unknown Book'}</ReactRouterDOM.Link> was returned by <ReactRouterDOM.Link to={`/users/${loan.userId}`} className="font-semibold text-green-700 dark:text-green-400 hover:underline">{userMap.get(loan.userId) || 'Unknown User'}</ReactRouterDOM.Link>.
                         </>
                     )
                 });
@@ -118,29 +119,29 @@ const RecentActivityFeed: React.FC = () => {
 
     if (isLoading) {
         return (
-            <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-lg font-semibold text-slate-800 mb-4">Recent Activity (Today)</h3>
+            <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md">
+                <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-4">Recent Activity (Today)</h3>
                 <Spinner />
             </div>
         );
     }
 
     return (
-        <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold text-slate-800 mb-4">Recent Activity (Today)</h3>
+        <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md">
+            <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-4">Recent Activity (Today)</h3>
             {activities.length > 0 ? (
                 <ul className="space-y-4">
                     {activities.map(activity => (
                         <li key={activity.id} className="flex items-start space-x-3">
                             <ActivityIcon type={activity.type} />
                             <div className="flex-1">
-                                <p className="text-sm text-slate-700">{activity.text}</p>
+                                <p className="text-sm text-slate-700 dark:text-slate-300">{activity.text}</p>
                             </div>
                         </li>
                     ))}
                 </ul>
             ) : (
-                <p className="text-sm text-slate-500 text-center py-4">No new activity today.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400 text-center py-4">No new activity today.</p>
             )}
         </div>
     );

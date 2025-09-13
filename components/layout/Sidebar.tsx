@@ -1,6 +1,8 @@
 
 
 
+
+
 import React from 'react';
 // FIX: Changed react-router-dom import to namespace import to fix module resolution errors.
 import * as ReactRouterDOM from 'react-router-dom';
@@ -8,9 +10,9 @@ import { ADMIN_NAV_ITEMS, USER_NAV_ITEMS } from '../../constants';
 import { useAuth } from '../../hooks/useAuth';
 
 const Logo = () => (
-    <div className="flex flex-col items-center justify-center py-4 border-b border-slate-200">
-        <img src="public/logo.jpeg" alt="Moshood Abiola Polytechnic Logo" className="w-24" />
-        <span className="text-green-800 font-semibold text-lg mt-2 text-center">Moshood Abiola Polytechnic Library</span>
+    <div className="flex flex-col items-center justify-center py-4 border-b border-slate-200 dark:border-slate-700">
+        <img src="https://i.imgur.com/x3A0haK.jpeg" alt="Moshood Abiola Polytechnic Logo" className="w-24" />
+        <span className="text-green-800 dark:text-green-400 font-semibold text-lg mt-2 text-center">Moshood Abiola Polytechnic Library</span>
     </div>
 );
 
@@ -21,14 +23,14 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
   const { user, pendingLoanCount } = useAuth();
-  const linkClasses = "flex items-center justify-between px-4 py-3 text-slate-600 hover:bg-slate-100 rounded-md transition-colors";
-  const activeLinkClasses = "bg-green-100 font-semibold text-green-700";
+  const linkClasses = "flex items-center justify-between px-4 py-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-md transition-colors";
+  const activeLinkClasses = "bg-green-100 font-semibold text-green-700 dark:bg-green-900/50 dark:text-green-300";
 
   const navItems = user?.role === 'admin' ? ADMIN_NAV_ITEMS : USER_NAV_ITEMS;
   
   const sidebarClasses = `
-    bg-white text-slate-700 flex flex-col p-4 transition-transform duration-300 ease-in-out
-    fixed inset-y-0 left-0 z-40 w-64 md:relative md:translate-x-0 md:border-r md:border-slate-200
+    bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 flex flex-col p-4 transition-transform duration-300 ease-in-out
+    fixed inset-y-0 left-0 z-40 w-64 md:relative md:translate-x-0 md:border-r md:border-slate-200 md:dark:border-slate-700
     ${isOpen ? 'translate-x-0' : '-translate-x-full'}
   `;
 
@@ -69,8 +71,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
             ))}
           </ul>
         </nav>
-        <div className="pt-4 border-t border-slate-200">
-           <p className="text-xs text-slate-400 text-center">&copy; 2024 Library System</p>
+        <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
+           <p className="text-xs text-slate-400 dark:text-slate-500 text-center">&copy; 2024 Library System</p>
         </div>
       </aside>
     </>
