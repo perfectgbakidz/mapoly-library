@@ -1,6 +1,8 @@
 
 
 
+
+
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 // FIX: Changed react-router-dom import to namespace import to fix module resolution errors.
 import * as ReactRouterDOM from 'react-router-dom';
@@ -167,7 +169,7 @@ const UserDashboardPage: React.FC = () => {
 
             <div className="bg-white dark:bg-slate-800 p-4 md:p-6 rounded-lg shadow-md">
                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-200 dark:border-slate-700 pb-3 mb-4 gap-2">
-                    <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200">My Loan History</h2>
+                    <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200">My Book History</h2>
                     <input
                         type="text"
                         placeholder="Search history..."

@@ -39,8 +39,8 @@ export const ADMIN_NAV_ITEMS = [
     { name: 'Dashboard', href: '/admin/dashboard', icon: <HomeIcon /> },
     { name: 'Books', href: '/books', icon: <BookIcon /> },
     { name: 'Users', href: '/users', icon: <UsersIcon /> },
-    { name: 'Loan Management', href: '/borrow-return', icon: <SwapIcon /> },
-    { name: 'Validate Loan', href: '/admin/validate-loan', icon: <QRCodeIcon /> },
+    { name: 'Book Management', href: '/borrow-return', icon: <SwapIcon /> },
+    { name: 'Validate Book', href: '/admin/validate-loan', icon: <QRCodeIcon /> },
     { name: 'Settings', href: '/settings', icon: <SettingsIcon /> },
 ];
 

@@ -1,6 +1,8 @@
 
 
 
+
+
 import React, { useState, useEffect, useCallback } from 'react';
 // FIX: Changed react-router-dom import to namespace import to fix module resolution errors.
 import * as ReactRouterDOM from 'react-router-dom';
@@ -86,7 +88,7 @@ const UserDetailPage: React.FC = () => {
             </div>
 
             <div className="bg-white dark:bg-slate-800 p-4 md:p-6 rounded-lg shadow-md">
-                <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 border-b dark:border-slate-700 pb-3 mb-4">Loan History ({userDetails.loans.length})</h2>
+                <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 border-b dark:border-slate-700 pb-3 mb-4">Book History ({userDetails.loans.length})</h2>
                 <div className="overflow-x-auto">
                     <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
                         <thead className="bg-slate-50 dark:bg-slate-700 hidden md:table-header-group">

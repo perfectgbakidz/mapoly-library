@@ -2,6 +2,8 @@
 
 
 
+
+
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import QRCode from 'qrcode';
 import { Book, Loan, LoanWithDetails, User } from '../types';
@@ -63,7 +65,7 @@ const StudentBorrowReturnPage = () => {
         setIsSubmitting(true);
         try {
             await api.requestBookLoan(parseInt(selectedBookIdToRequest));
-            addToast('Book loan requested successfully!', 'success');
+            addToast('Book requested successfully!', 'success');
             setSelectedBookIdToRequest('');
             await fetchData();
         } catch (error) {
@@ -117,7 +119,7 @@ const StudentBorrowReturnPage = () => {
 
             const a = document.createElement('a');
             a.href = qrCodeUrl;
-            a.download = `loan-qrcode-${loan.id}.png`;
+            a.download = `book-qrcode-${loan.id}.png`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -149,7 +151,7 @@ const StudentBorrowReturnPage = () => {
         <div className="space-y-8">
              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md space-y-4">
-                    <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 border-b pb-2 border-slate-200 dark:border-slate-700">Request a Book Loan</h2>
+                    <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 border-b pb-2 border-slate-200 dark:border-slate-700">Request a Book</h2>
                     <div>
                         <label htmlFor="book-select-borrow" className="block text-sm font-medium text-slate-700 dark:text-slate-300">Select Book</label>
                         <select id="book-select-borrow" value={selectedBookIdToRequest} onChange={e => setSelectedBookIdToRequest(e.target.value)} className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm rounded-md">
@@ -158,7 +160,7 @@ const StudentBorrowReturnPage = () => {
                         </select>
                     </div>
                     <div className="pt-2">
-                        <Button onClick={handleRequestLoan} isLoading={isSubmitting} disabled={!selectedBookIdToRequest}>Request Loan</Button>
+                        <Button onClick={handleRequestLoan} isLoading={isSubmitting} disabled={!selectedBookIdToRequest}>Request Book</Button>
                     </div>
                 </div>
 
@@ -178,7 +180,7 @@ const StudentBorrowReturnPage = () => {
             </div>
 
             <div className="bg-white dark:bg-slate-800 p-4 md:p-6 rounded-lg shadow-md">
-                <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-700 pb-3 mb-4">My Loan History & Status</h2>
+                <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-700 pb-3 mb-4">My Book History & Status</h2>
                 <div className="overflow-x-auto">
                     <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
                         <thead className="bg-slate-50 dark:bg-slate-700 hidden md:table-header-group">
@@ -237,7 +239,7 @@ const AdminLoanManagementPage = () => {
             }));
             setAllLoans(detailedLoans.sort((a,b) => new Date(b.requestDate).getTime() - new Date(a.requestDate).getTime()));
         } catch (error) {
-            addToast('Failed to load loan management data', 'error');
+            addToast('Failed to load book management data', 'error');
         } finally {
             setIsLoading(false);
         }
@@ -250,7 +252,7 @@ const AdminLoanManagementPage = () => {
     const handleApprove = async (loanId: number) => {
         try {
             await api.approveLoan(loanId);
-            addToast("Loan approved!", "success");
+            addToast("Book request approved!", "success");
             await Promise.all([fetchData(), fetchPendingLoanCount()]);
         } catch (error) {
             addToast((error as Error).message, 'error');
@@ -258,10 +260,10 @@ const AdminLoanManagementPage = () => {
     };
     
     const handleReject = async (loanId: number) => {
-         if (window.confirm('Are you sure you want to reject this loan request?')) {
+         if (window.confirm('Are you sure you want to reject this book request?')) {
             try {
                 await api.rejectLoan(loanId);
-                addToast("Loan rejected.", "success");
+                addToast("Book request rejected.", "success");
                 await Promise.all([fetchData(), fetchPendingLoanCount()]);
             } catch (error) {
                 addToast((error as Error).message, 'error');
@@ -326,7 +328,7 @@ const AdminLoanManagementPage = () => {
     return (
         <div className="space-y-6">
             <div className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <h2 className="text-xl font-bold text-slate-800 dark:text-slate-200">Loan Management</h2>
+                <h2 className="text-xl font-bold text-slate-800 dark:text-slate-200">Book Management</h2>
                  <div className="flex flex-wrap space-x-2">
                     <button onClick={() => setActiveTab('pending')} className={tabButtonClasses('pending')}>Pending ({pendingLoans.length})</button>
                     <button onClick={() => setActiveTab('active')} className={tabButtonClasses('active')}>Active ({activeLoans.length})</button>

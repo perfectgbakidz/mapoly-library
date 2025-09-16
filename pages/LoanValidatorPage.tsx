@@ -1,5 +1,7 @@
 
 
+
+
 import React, { useState, useEffect } from 'react';
 import { Html5QrcodeScanner, Html5QrcodeScannerState } from 'html5-qrcode';
 import { useToast } from '../hooks/useToast';
@@ -45,7 +47,7 @@ const LoanValidatorPage: React.FC = () => {
                 setScanResult(parsedData);
                 
                 if (!parsedData.loanId || !parsedData.matricNo) {
-                    throw new Error("QR code does not contain valid loan data.");
+                    throw new Error("QR code does not contain valid book data.");
                 }
 
                 // Fetch all loans to verify against the scanned one. 
@@ -54,11 +56,11 @@ const LoanValidatorPage: React.FC = () => {
                 const matchingLoan = allLoans.find(loan => loan.id === parsedData.loanId);
 
                 if (!matchingLoan) {
-                    throw new Error(`Loan with ID ${parsedData.loanId} not found in the system.`);
+                    throw new Error(`Book request with ID ${parsedData.loanId} not found in the system.`);
                 }
                 
                 if (matchingLoan.status !== 'approved') {
-                     throw new Error(`This loan's status is "${matchingLoan.status}", not "approved". It cannot be picked up.`);
+                     throw new Error(`This book request's status is "${matchingLoan.status}", not "approved". It cannot be picked up.`);
                 }
                 
                 if (matchingLoan.returnDate) {
@@ -67,7 +69,7 @@ const LoanValidatorPage: React.FC = () => {
                 
                 // All checks passed
                 setValidationStatus('valid');
-                setValidationMessage('Loan details are valid. You can hand over the book to the student.');
+                setValidationMessage('Book details are valid. You can hand over the book to the student.');
 
             } catch (error) {
                 const errorMessage = (error instanceof Error) ? error.message : "An unknown error occurred during validation.";
@@ -133,15 +135,15 @@ const LoanValidatorPage: React.FC = () => {
     return (
         <div className="max-w-2xl mx-auto space-y-6">
             <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md">
-                <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-2">Loan Validator</h1>
-                <p className="text-slate-500 dark:text-slate-400">Use the camera to scan a student's loan QR code to validate their book pickup.</p>
+                <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-2">Book Validator</h1>
+                <p className="text-slate-500 dark:text-slate-400">Use the camera to scan a student's book QR code to validate their book pickup.</p>
             </div>
 
             <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md min-h-[350px] flex flex-col justify-center items-center">
                  {!isScanning && validationStatus === 'idle' && (
                     <div className="text-center">
                         <QRCodeIcon />
-                        <p className="text-slate-600 dark:text-slate-400 my-4">Ready to validate a loan.</p>
+                        <p className="text-slate-600 dark:text-slate-400 my-4">Ready to validate a book.</p>
                         <Button onClick={handleStartScan}>Start Scanner</Button>
                     </div>
                  )}

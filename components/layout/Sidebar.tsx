@@ -3,6 +3,7 @@
 
 
 
+
 import React from 'react';
 // FIX: Changed react-router-dom import to namespace import to fix module resolution errors.
 import * as ReactRouterDOM from 'react-router-dom';
@@ -61,7 +62,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
                       <span className="mr-3">{item.icon}</span>
                       {item.name}
                   </div>
-                  {item.name === 'Loan Management' && pendingLoanCount > 0 && (
+                  {item.name === 'Book Management' && pendingLoanCount > 0 && (
                       <span className="bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
                           {pendingLoanCount}
                       </span>
