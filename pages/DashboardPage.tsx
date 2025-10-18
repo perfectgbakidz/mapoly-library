@@ -63,7 +63,7 @@ const DashboardPage: React.FC = () => {
                 </div>
             </div>
             <div className="flex justify-between mt-2 text-sm text-slate-600 dark:text-slate-400">
-                <span><span className="font-bold text-amber-500">{borrowedBooks}</span> On Loan</span>
+                <span><span className="font-bold text-amber-500">{borrowedBooks}</span>Borrowed Books</span>
                 <span><span className="font-bold text-green-500">{availableBooks}</span> Available</span>
             </div>
         </div>
@@ -76,7 +76,7 @@ const DashboardPage: React.FC = () => {
     <div className="space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
         <StatCard title="Total Books" value={stats.totalBooks} icon={<BookIcon />} color="bg-green-600" />
-        <StatCard title="Books on Loan" value={stats.borrowedBooks} icon={<BorrowIcon />} color="bg-amber-500" />
+        <StatCard title="Books Borrowed" value={stats.borrowedBooks} icon={<BorrowIcon />} color="bg-amber-500" />
         <StatCard title="Pending Requests" value={stats.pendingLoans} icon={<PendingIcon />} color="bg-blue-500" />
         <StatCard title="Overdue Books" value={stats.overdueBooks} icon={<OverdueIcon />} color="bg-red-600" />
         <StatCard title="Total Students" value={stats.totalStudents} icon={<UsersIcon />} color="bg-green-500" />
